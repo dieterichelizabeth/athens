@@ -24,6 +24,28 @@ const resolvers = {
 
       return { token, user };
     },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      console.log(user);
+
+      if (!user) {
+        throw new AuthenticationError(
+          "This email is not associated to an existing account!"
+        );
+      }
+
+      const validPassword = await user.isCorrectPassword(password);
+      if (!validPassword) {
+        throw new AuthenticationError(
+          "Sorry, the password you entered is incorrect. Please try again."
+        );
+      }
+
+      console.log("Valid User Found and Password provided!");
+
+      const token = signToken(user);
+      return { token, user };
+    },
   },
 };
 

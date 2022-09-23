@@ -16,7 +16,7 @@ module.exports = {
     }
 
     if (!token) {
-      return res.status(400).json({ message: "You have no token!" });
+      return req;
     }
 
     // verify token and get user data out of it
@@ -39,4 +39,5 @@ module.exports = {
 };
 
 // 9 - Context creation failed: Cannot read properties of undefined (reading 'token'). Solution: turn req into an object
-// 32 - TypeError: Context creation failed: next is not a function. Solution: return the req. object
+// 32 - TypeError: Context creation failed: next is not a function. Solution: return the req object
+// 19 - Context creation failed: Cannot read properties of undefined (reading 'status'). Solution: return the req
