@@ -13,23 +13,14 @@ const server = new ApolloServer({
 });
 
 const app = express();
-// https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// if we're in production, serve client/build as static assets
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../client/build")));
-// }
-
 // Create an instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
-  // Start the server
   await server.start();
 
-  // integrate our Apollo server with the Express application as middleware
-  // applyMiddleware method to connect Apollo Server to Express - very important
-  // the Apollo Playground will not run without this!
+  // Integrate our Apollo server with the Express application as middleware i.e. applyMiddleware method to connect Apollo Server to Express
   server.applyMiddleware({ app });
 
   db.once("open", () => {
@@ -46,4 +37,10 @@ const startApolloServer = async (typeDefs, resolvers) => {
 
 startApolloServer();
 
+// https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 // https://studio.apollographql.com/sandbox/explorer
+
+// if we're in production, serve client/build as static assets
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../client/build")));
+// }
