@@ -7,7 +7,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { getMe, deleteBook } from "../utils/API";
+import { deleteBook } from "../utils/API";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { REMOVE_BOOK } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
@@ -25,9 +25,9 @@ const SavedBooks = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        // If the user isn't logged in, redirect to homepage
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (!token) {
+          window.alert("You must be logged in to see your saved books!");
           window.location.assign("/");
         }
 
@@ -42,12 +42,12 @@ const SavedBooks = () => {
     getUserData();
   }, [userDataLength]);
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
+  // create function that accepts the book's mongo_id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
     if (!token) {
-      return false;
+      window.alert("You must log in to delete a book!");
+      window.location.assign("/");
     }
 
     try {
