@@ -60,6 +60,20 @@ const resolvers = {
 
       throw new AuthenticationError("You must be logged in to save a book!!");
     },
+    removeBook: async (parent, { bookId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedBooks: { bookId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+
+      throw new AuthenticationError(
+        " You must be logged in to remove a book from your saved books!!"
+      );
+    },
   },
 };
 
