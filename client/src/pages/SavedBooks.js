@@ -7,7 +7,6 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { deleteBook } from "../utils/API";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { REMOVE_BOOK } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
