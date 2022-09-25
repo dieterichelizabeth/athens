@@ -17,6 +17,7 @@ const httpLink = createHttpLink({
 });
 
 // Middleware function that will retrieve the token for us
+// https://www.apollographql.com/docs/react/networking/authentication/
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
   return {
