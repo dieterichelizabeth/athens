@@ -36,8 +36,3 @@ module.exports = {
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
-
-// 9 - Context creation failed: Cannot read properties of undefined (reading 'token'). Solution: turn req into an object
-// 32 - TypeError: Context creation failed: next is not a function. Solution: return the req object
-// 19 - Context creation failed: Cannot read properties of undefined (reading 'status'). Solution: return the req
-// Removed- return res.status(400).json({ message: "invalid token!" });

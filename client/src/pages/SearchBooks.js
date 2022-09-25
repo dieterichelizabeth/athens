@@ -51,10 +51,11 @@ const SearchBooks = () => {
       const bookData = items.map((book) => ({
         bookId: book.id,
         authors: book.volumeInfo.authors || ["No author to display"],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
+        title: book.volumeInfo.title || "No available description to display",
+        description:
+          book.volumeInfo.description || "No available description to display",
         image: book.volumeInfo.imageLinks?.thumbnail || "",
-        link: book.saleInfo.buyLink || "link",
+        link: book.saleInfo.buyLink || "No available link to display",
       }));
 
       setSearchedBooks(bookData);

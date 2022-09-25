@@ -45,6 +45,3 @@ const startApolloServer = async (typeDefs, resolvers) => {
 };
 
 startApolloServer();
-
-// https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
-// https://studio.apollographql.com/sandbox/explorer
